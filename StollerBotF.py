@@ -111,7 +111,7 @@ async def spis(num):
         #спам компаниями
         for i in listok:
             await client.send_message(OUTPUT_CHANNEL1, i)
-            await asyncio.sleep(2)
+            await asyncio.sleep(2.5)
         s = ''
         for i in my_sort(answer):
             s += str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
