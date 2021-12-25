@@ -6,8 +6,6 @@ from telethon import TelegramClient, sync, events
 INPUT_CHANNEL1 = 'https://t.me/joinchat/AAAAAFLDCjpm9veBn68xUQ'
 OUTPUT_CHANNEL1 = '@stocks_analyst_bot'
 
-
-
 api_id = 15837383
 api_hash = '4face98e940e7f2b6a1d45324cbe61f0'
 
@@ -16,6 +14,8 @@ TAGS = ['#TAG1', '#TAG2']
 client = TelegramClient('Ses', api_id, api_hash)
 
 print("Client Created")
+
+#тикеры компаний
 listok = {'AA', 'AAPL', 'AAPL', 'ABBV', 'AET', 'AET', 'AGN', 'AGN',
           'AHC', 'AHC', 'AMAT', 'AMAT', 'AMCC', 'AMCC', 'AMGN', 'AMGN',
           'AMZN', 'AMZN', 'APA', 'APA', 'APC', 'APC', 'ARBA', 'ARBA',
@@ -53,11 +53,10 @@ listok = {'AA', 'AAPL', 'AAPL', 'ABBV', 'AET', 'AET', 'AGN', 'AGN',
           'PAAS', 'GOLD'}
 answer = []
 async def inf(msg_id):
+    #text - сообщение от того бота
     text = str(await client.get_messages(OUTPUT_CHANNEL1, ids = msg_id))
-    #print(text)
     ind = text.find('%')
     tik1 = text.find('$')
-    #print(ind, tik1)
     ans1 = 0
     if (ind > 0):
         for i in range (4, 0, -1):
@@ -65,7 +64,8 @@ async def inf(msg_id):
                 ans1 += (int(text[ind - i]) * pow(10, i - 1))
             except:
                 continue
-        #print(ans1)
+    #анс1 - процент
+    #анс2 - тикер компании
     ans1 = str(ans1)
     ans2 = ''
     if (tik1 > 0):
@@ -76,9 +76,10 @@ async def inf(msg_id):
                 i += 1
             except:
                 i += 1
-        #print(ans2)
     if (ans2 != ''):
+        #если бот нашел компанию
         answer.append(ans1 + ' ' + ans2)
+    #дальше я сделал херню, чтобы мой бот проспамил компаниями только один раз
     f = open('text.txt', 'r')
     i = f.read(1)
     lines = open('text.txt', 'r').readlines()
@@ -86,10 +87,13 @@ async def inf(msg_id):
     out = open('text.txt', 'w')
     out.writelines(lines)
     out.close()
+    #вызывается спам компаниями
     await spis(i)
     
 async def spis(num):
+    #проверка проспамил ли бот
     if num == '1':
+        #спам компаниями
         for i in listok:
             await client.send_message(OUTPUT_CHANNEL1, i)
             time.sleep(2)
@@ -98,6 +102,7 @@ async def spis(num):
     
 @client.on(events.NewMessage(chats=(OUTPUT_CHANNEL1)))
 async def normal_handler(event):
+    #реакция на ответ бота
     await inf(event.id)
 
 
