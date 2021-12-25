@@ -3,6 +3,7 @@ import requests
 import asyncio
 import time
 import fileinput
+import unidecode
 from telethon import TelegramClient, sync, events
 
 INPUT_CHANNEL1 = 'https://t.me/joinchat/AAAAAFLDCjpm9veBn68xUQ'
@@ -89,7 +90,7 @@ async def inf(msg_id):
         for tag in soup.find_all('span', class_ = 'IsqQVc NprOob wT3VGc'):
             price += tag.text
         if price != '':
-            answer.append([ans1, float(price.replace(',', '.')), ans2])
+            answer.append([ans1, float(unidecode.unidecode(price).replace(',', '.').replace(' ', '')), ans2])
         else:
             answer.append([ans1, 0.0, ans2])
     #дальше я сделал херню, чтобы мой бот проспамил компаниями только один раз
