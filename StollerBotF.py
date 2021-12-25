@@ -80,7 +80,7 @@ async def inf(msg_id):
         #тут мы чекаем в гугле по тикеру компании скока стоит одна акция
         URL_d = 'https://www.google.com/search?q=' + ans2 + '+stock'
         HEADERS = {
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.50', 'accept': '*/*'
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.438'
         }
         response = requests.get(URL_d, headers = HEADERS)
         soup = BeautifulSoup(response.content, 'html.parser')
