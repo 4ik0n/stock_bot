@@ -118,8 +118,13 @@ async def spis(num):
         #спам компаниями
         for i in listok:
             await client.send_message(OUTPUT_CHANNEL1, i)
-            time.sleep(2)
-        print(*sorted(answer))
+            await asyncio.sleep(2)
+        s = ''
+        for i in sorted(answer):
+            s += i + '\n'
+        out = open('answer.txt', 'w')
+        out.writelines(s)
+        out.close()
                 
     
 @client.on(events.NewMessage(chats=(OUTPUT_CHANNEL1)))
