@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+import requests
 import asyncio
 import time
 import fileinput
@@ -69,7 +71,7 @@ async def inf(msg_id):
     ans1 = str(ans1)
     ans2 = ''
     if (tik1 > 0):
-        i = tik1
+        i = tik1 + 1
         while text[i] != '(':
             try:
                 ans2 += text[i]
@@ -78,7 +80,21 @@ async def inf(msg_id):
                 i += 1
     if (ans2 != ''):
         #если бот нашел компанию
-        answer.append(ans1 + ' ' + ans2)
+        #тут мы чекаем в гугле по тикеру компании скока стоит одна акция
+        URL_d = 'https://www.google.com/search?q=' + ans2 + '+stock'
+        HEADERS = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.438'
+        }
+        response = requests.get(URL_d, headers = HEADERS)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        #прайс это скока стоит одна акция
+        price = ''
+        for tag in soup.find_all('span', class_ = 'IsqQVc NprOob wT3VGc'):
+            price += tag.text
+        if price != '':
+            answer.append(ans1 + ' ' + price + ' ' + ans2)
+        else:
+            answer.append(ans1 + ' ' + '*' + ' ' + ans2)
     #дальше я сделал херню, чтобы мой бот проспамил компаниями только один раз
     f = open('text.txt', 'r')
     i = f.read(1)
@@ -108,6 +124,3 @@ async def normal_handler(event):
 
 client.start()
 client.run_until_disconnected()
-
-
-
