@@ -33,6 +33,25 @@ listok = {'AWH', 'ILMN', 'EOG', 'DISH', 'AMGN', 'PM', 'DBX', 'DELL', 'MU', 'CHK'
           'QCOM', 'VRSN', 'LPL', 'UPS', 'M', 'CLOV', 'SAVA', 'FB', 'NVDA', 'VZ', 'JPM', 'SLDB', 'TWTR', 'CI', 'GS', 'BR',
           'LI', 'TSLA', 'RIG', 'COF', 'FSLR', 'AAPL', 'IBM', 'BNGO', 'PRU', 'MOMO', 'CHKP', 'CVX', 'NRG', 'MMM', 'TROW'}
 answer = []
+def my_sort(sort_list):
+    def compare(elem1, elem2):
+        if (elem1[0] < elem2[0]):
+            return True
+        elif (elem1[0] > elem2[0]):
+            return False
+        else:
+            if (elem1[1] > elem2[1]):
+                return True
+            else:
+                return False
+    for i in range(len(sort_list)):
+        for j in range(len(sort_list) - 1 - i):
+            elem_now = sort_list[j]
+            if (compare(sort_list[j], sort_list[j + 1])):
+                sort_list[j] = sort_list[j + 1]
+                sort_list[j + 1] = elem_now
+    return sort_list
+
 async def inf(msg_id):
     #text - сообщение от того бота
     text = str(await client.get_messages(OUTPUT_CHANNEL1, ids = msg_id))
@@ -47,7 +66,6 @@ async def inf(msg_id):
                 continue
     #анс1 - процент
     #анс2 - тикер компании
-    ans1 = str(ans1)
     ans2 = ''
     if (tik1 > 0):
         i = tik1 + 1
@@ -62,18 +80,19 @@ async def inf(msg_id):
         #тут мы чекаем в гугле по тикеру компании скока стоит одна акция
         URL_d = 'https://www.google.com/search?q=' + ans2 + '+stock'
         HEADERS = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.438'
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.50', 'accept': '*/*'
         }
         response = requests.get(URL_d, headers = HEADERS)
         soup = BeautifulSoup(response.content, 'html.parser')
+        print(soup, 'soup')
         #прайс это скока стоит одна акция
         price = ''
         for tag in soup.find_all('span', class_ = 'IsqQVc NprOob wT3VGc'):
             price += tag.text
         if price != '':
-            answer.append(ans1 + ' ' + price + ' $' + ans2)
+            answer.append([ans1, float(price), ans2])
         else:
-            answer.append(ans1 + ' ' + '*' + ' $' + ans2)
+            answer.append([ans1, 0.0, ans2])
     #дальше я сделал херню, чтобы мой бот проспамил компаниями только один раз
     f = open('text.txt', 'r')
     i = f.read(1)
@@ -93,8 +112,8 @@ async def spis(num):
             await client.send_message(OUTPUT_CHANNEL1, i)
             await asyncio.sleep(2)
         s = ''
-        for i in sorted(answer):
-            s += i + '\n'
+        for i in my_sort(answer):
+            s += str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
         out = open('answer.txt', 'w')
         out.writelines(s)
         out.close()
