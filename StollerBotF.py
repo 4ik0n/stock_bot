@@ -5,8 +5,6 @@ import time
 import fileinput
 from telethon import TelegramClient, sync, events
 
-print('саня гей')
-
 INPUT_CHANNEL1 = 'https://t.me/joinchat/AAAAAFLDCjpm9veBn68xUQ'
 OUTPUT_CHANNEL1 = '@stocks_analyst_bot'
 
