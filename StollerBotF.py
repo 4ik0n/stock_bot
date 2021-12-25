@@ -85,7 +85,10 @@ async def inf(msg_id):
         HEADERS = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.438'
         }
-        response = requests.get(URL_d, headers = HEADERS)
+        try:
+            response = requests.get(URL_d, headers = HEADERS)
+        except:
+            response = requests.get(URL_d, headers = HEADERS)
         soup = BeautifulSoup(response.content, 'html.parser')
         #прайс это скока стоит одна акция
         price = ''
@@ -95,6 +98,36 @@ async def inf(msg_id):
             answer.append([ans1, float(unidecode.unidecode(price).replace(',', '.').replace(' ', '')), ans2])
         else:
             answer.append([ans1, 0.0, ans2])
+    
+async def spis(num):
+    global flag_ans
+    #проверка проспамил ли бот
+    if num == '1':
+        #спам компаниями
+        for i in listok:
+            await client.send_message(OUTPUT_CHANNEL1, i)
+            time_begin = time.time()
+            await asyncio.sleep(1.25)
+            while not flag_ans:
+                if (time.time() - time_begin > 5):
+                    time_begin = time.time()
+                    await client.send_message(OUTPUT_CHANNEL1, i)
+                await asyncio.sleep(0.5)
+            flag_ans = False
+        s = ''
+        for i in my_sort(answer):
+            s += str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
+        out = open('answer.txt', 'w')
+        out.writelines(s)
+        out.close()
+        print('I`m finished!')
+                
+    
+@client.on(events.NewMessage(chats=(OUTPUT_CHANNEL1)))
+async def normal_handler(event):
+    global flag_ans
+    #реакция на ответ бота
+    flag_ans = True
     #дальше я сделал херню, чтобы мой бот проспамил компаниями только один раз
     f = open('text.txt', 'r')
     i = f.read(1)
@@ -105,27 +138,7 @@ async def inf(msg_id):
     out.close()
     #вызывается спам компаниями
     await spis(i)
-    
-async def spis(num):
-    #проверка проспамил ли бот
-    if num == '1':
-        #спам компаниями
-        for i in listok:
-            await client.send_message(OUTPUT_CHANNEL1, i)
-            await asyncio.sleep(2.5)
-        s = ''
-        for i in my_sort(answer):
-            s += str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
-        out = open('answer.txt', 'w')
-        out.writelines(s)
-        out.close()
-                
-    
-@client.on(events.NewMessage(chats=(OUTPUT_CHANNEL1)))
-async def normal_handler(event):
-    #реакция на ответ бота
     await inf(event.id)
-
 
 client.start()
 client.run_until_disconnected()
