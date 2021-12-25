@@ -98,9 +98,9 @@ async def inf(msg_id):
         for tag in soup.find_all('span', class_ = 'IsqQVc NprOob wT3VGc'):
             price += tag.text
         if price != '':
-            answer.append(ans1 + ' ' + price + ' ' + ans2)
+            answer.append(ans1 + ' ' + price + ' $' + ans2)
         else:
-            answer.append(ans1 + ' ' + '*' + ' ' + ans2)
+            answer.append(ans1 + ' ' + '*' + ' $' + ans2)
     #дальше я сделал херню, чтобы мой бот проспамил компаниями только один раз
     f = open('text.txt', 'r')
     i = f.read(1)
