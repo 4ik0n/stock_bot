@@ -17,6 +17,12 @@ client = TelegramClient('Ses', api_id, api_hash)
 
 print("Client Created")
 
+lines = open('text.txt', 'r').readlines()
+lines[0] = '1'
+out = open('text.txt', 'w')
+out.writelines(lines)
+out.close()
+
 #тикеры компаний
 listok = {'AA', 'AAPL', 'AAPL', 'ABBV', 'AET', 'AET', 'AGN', 'AGN',
           'AHC', 'AHC', 'AMAT', 'AMAT', 'AMCC', 'AMCC', 'AMGN', 'AMGN',
