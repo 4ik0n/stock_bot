@@ -34,7 +34,7 @@ listok = {'AWH', 'ILMN', 'EOG', 'DISH', 'AMGN', 'PM', 'DBX', 'DELL', 'MU', 'CHK'
           'QCOM', 'VRSN', 'LPL', 'UPS', 'M', 'CLOV', 'SAVA', 'FB', 'NVDA', 'VZ', 'JPM', 'SLDB', 'TWTR', 'CI', 'GS', 'BR',
           'LI', 'TSLA', 'RIG', 'COF', 'FSLR', 'AAPL', 'IBM', 'BNGO', 'PRU', 'MOMO', 'CHKP', 'CVX', 'NRG', 'MMM', 'TROW', 'pltr',
           'fcx', 'hpq', 'SKLZ', 'kep', 'bzun', 'ibn', 'hnp', 'ttm', 'vne', 'ride', 'kopn', 'gevo', 'ois', 'dm', 'mvis', 'insg',
-          'mlco', 'coty', 'fold', 'sohu', 'disca', 'levi', 'cour'}
+          'mlco', 'coty', 'fold', 'sohu', 'disca', 'levi', 'cour', 'qiwi', 'hhr', 'mbt', 'frhc', 'tcs'}
 answer = []
 def my_sort(sort_list):
     def compare(elem1, elem2):
