@@ -32,7 +32,8 @@ listok = {'AWH', 'ILMN', 'EOG', 'DISH', 'AMGN', 'PM', 'DBX', 'DELL', 'MU', 'CHK'
           'ITT', 'JNPR', 'CTAS', 'PCAR', 'CME', 'BABA', 'ABBV', 'F', 'DIS', 'CAT', 'SBUX', 'JNJ', 'COST', 'FTI', 'PAAS', 'CMI',
           'GOLD', 'VIPS', 'DOW', 'OXY', 'VRTS', 'XLNX', 'NFLX', 'MET', 'EBAY', 'NTAP', 'T', 'ACH', 'V', 'YNDX', 'XOM', 'APA',
           'QCOM', 'VRSN', 'LPL', 'UPS', 'M', 'CLOV', 'SAVA', 'FB', 'NVDA', 'VZ', 'JPM', 'SLDB', 'TWTR', 'CI', 'GS', 'BR',
-          'LI', 'TSLA', 'RIG', 'COF', 'FSLR', 'AAPL', 'IBM', 'BNGO', 'PRU', 'MOMO', 'CHKP', 'CVX', 'NRG', 'MMM', 'TROW'}
+          'LI', 'TSLA', 'RIG', 'COF', 'FSLR', 'AAPL', 'IBM', 'BNGO', 'PRU', 'MOMO', 'CHKP', 'CVX', 'NRG', 'MMM', 'TROW', 'pltr',
+          'fcx', 'hpq', 'SKLZ', 'kep', 'bzun', 'ibn', 'hnp', 'ttm', 'vne'}
 answer = []
 def my_sort(sort_list):
     def compare(elem1, elem2):
