@@ -84,7 +84,6 @@ async def inf(msg_id):
         }
         response = requests.get(URL_d, headers = HEADERS)
         soup = BeautifulSoup(response.content, 'html.parser')
-        print(soup, 'soup')
         #прайс это скока стоит одна акция
         price = ''
         for tag in soup.find_all('span', class_ = 'IsqQVc NprOob wT3VGc'):
