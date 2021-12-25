@@ -6,6 +6,8 @@ from telethon import TelegramClient, sync, events
 INPUT_CHANNEL1 = 'https://t.me/joinchat/AAAAAFLDCjpm9veBn68xUQ'
 OUTPUT_CHANNEL1 = '@stocks_analyst_bot'
 
+print('bot')
+
 api_id = 15837383
 api_hash = '4face98e940e7f2b6a1d45324cbe61f0'
 
