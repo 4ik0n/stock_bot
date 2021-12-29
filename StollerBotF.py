@@ -98,12 +98,12 @@ async def spis(num):
         for i in listok:
             await client.send_message(OUTPUT_CHANNEL1, i)
             time_begin = time.time()
-            await asyncio.sleep(1.25)
+            await asyncio.sleep(3)
             while not flag_ans:
-                if (time.time() - time_begin > 10):
+                if (time.time() - time_begin > 30):
                     time_begin = time.time()
                     await client.send_message(OUTPUT_CHANNEL1, i)
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(0.25)
             flag_ans = False
         s = ''
         for i in my_sort(answer):
