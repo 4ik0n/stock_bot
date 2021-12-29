@@ -31,8 +31,8 @@ if id_step == 1:
     listok = open('spis.txt', 'r').readlines()
 elif id_step == 2:
     listok = open('case.txt', 'r').readlines()
-for i in listok:
-    i = i[:len(i) - 1]
+for j, i in enumerate(listok):
+    listok[j] = i[:len(i) - 1]
 answer = []
 def my_sort(sort_list):
     def compare(elem1, elem2):
