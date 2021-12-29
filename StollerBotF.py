@@ -82,7 +82,7 @@ async def inf(msg_id):
         #тут мы чекаем в гугле по тикеру компании скока стоит одна акция
         URL_d = 'https://www.google.com/search?q=' + ans2 + '+stock'
         f = open('ua.txt', 'r')
-        i = f.read(1)
+        i = f.read()
         HEADERS = {
             'user-agent': i
         }
