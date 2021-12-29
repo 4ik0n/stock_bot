@@ -81,8 +81,10 @@ async def inf(msg_id):
         #если бот нашел компанию
         #тут мы чекаем в гугле по тикеру компании скока стоит одна акция
         URL_d = 'https://www.google.com/search?q=' + ans2 + '+stock'
+        f = open('ua.txt', 'r')
+        i = f.read(1)
         HEADERS = {
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.438'
+            'user-agent': i
         }
         try:
             response = requests.get(URL_d, headers = HEADERS)
