@@ -24,8 +24,15 @@ out = open('text.txt', 'w')
 out.writelines(lines)
 out.close()
 
+id_step = 2
+
 #тикеры компаний
-listok = {'CORT', 'MTG', 'DDD', 'PLUG', 'UPWK', 'GTN', 'AYX', 'CHWY', 'TRIP', 'MRC', 'NFLX', 'MU', 'VRTS', 'TD', 'CL', 'APH', 'EW', 'BSX', 'ALLK', 'CLOV', 'CHGG', 'PD', 'LIN', 'PXD', 'HON', 'TTD', 'DXCM', 'RIVN', 'CARR', 'PUK', 'APTV', 'PDD', 'KKR', 'UNP', 'WBA', 'ET', 'CORR', 'CAT', 'WTTR', 'DISH', 'REGN', 'TXN', 'LMT', 'BAM', 'NKE', 'KLAC', 'PAYX', 'AMT', 'DM', 'FIS', 'AMD', 'HPQ', 'ACN', 'UL', 'SWN', 'CHTR', 'EPD', 'TWTR', 'ILMN', 'GSK', 'MOMO', 'BZUN', 'BTI', 'FTI', 'BDX', 'FDX', 'CDNS', 'ADSK', 'TRI', 'ZM', 'RBLX', 'TJX', 'TTM', 'RACE', 'DHR', 'SHOP', 'IQV', 'NEM', 'NTR', 'VZ', 'AIG', 'GEVO', 'NRG', 'MRVL', 'PBR', 'KO', 'ISRG', 'MMC', 'JNPR', 'RY', 'ETN', 'AMZN', 'SOHU', 'RDS-B', 'KBH', 'AMAT', 'BLK', 'CP', 'PRU', 'RIO', 'T', 'COST', 'HCA', 'VTI', 'FISV', 'PBR-A', 'SAP', 'SNP', 'AXP', 'BTO', 'PG', 'ECL', 'M', 'SLB', 'HNP', 'HIG', 'FRHC', 'ZYNE', 'SQ', 'UA', 'A', 'LLY', 'ENB', 'VEON', 'DOW', 'MSFT', 'COF', 'JPM', 'ABT', 'NSC', 'KMB', 'STZ', 'TSLA', 'MRNA', 'SAN', 'CME', 'RIG', 'IBN', 'PGR', 'MDT', 'DE', 'KHC', 'CNQ', 'APD', 'EQNR', 'TWLO', 'NOK', 'RTX', 'OXY', 'COP', 'BK', 'BUD', 'NVO', 'D', 'TAK', 'MLM', 'CSCO', 'VMW', 'MELI', 'LEVI', 'LOW', 'AAPL', 'BNS', 'PTR', 'CVX', 'ING', 'SKLZ', 'BR', 'TM', 'GS', 'NGG', 'IBM', 'ORCL', 'SMFG', 'AVP', 'BABA', 'CB', 'MDLZ', 'SO', 'AMX', 'MAR', 'MSI', 'IDXX', 'BMY', 'ALGN', 'PLTR', 'TROW', 'CIEN', 'CTAS', 'EOG', 'F', 'ADI', 'GDEV', 'NXPI', 'NU', 'PANW', 'MFGP', 'STM', 'V', 'LULU', 'BIDU', 'FCX', 'SNAP', 'PLD', 'USB', 'BA', 'PEP', 'ZTS', 'RDS-A', 'ABB', 'SONY', 'SPOT', 'LPL', 'COUR', 'NEE', 'RSG', 'TAL', 'KOPN', 'SPGI', 'DAL', 'ITT', 'NOW', 'WM', 'RELX', 'JNJ', 'JCI', 'ABNB', 'BNGO', 'SWI', 'HHR', 'KEP', 'SYK', 'VIPS', 'BNTX', 'ENDP', 'NTAP', 'HUM', 'PNC', 'EQIX', 'LI', 'INFY', 'CHKP', 'MCD', 'WIT', 'TMUS', 'HSBC', 'MCHP', 'SHW', 'EBAY', 'INSG', 'TT', 'CHK', 'CM', 'CNC', 'BAC', 'CRM', 'UBS', 'LFC', 'BKNG', 'DBX', 'VNR', 'PM', 'FOLD', 'INTC', 'QCOM', 'KDP', 'BBL', 'TRIT', 'AZN', 'SBUX', 'INFO', 'DUK', 'CMCSA', 'MLCO', 'DEO', 'E', 'AA', 'MCO', 'SCHW', 'ANTM', 'TGT', 'MNST', 'MUFG', 'NOC', 'SE', 'SPG', 'UBER', 'TRP', 'DIS', 'ADP', 'ASML', 'DLR', 'GE', 'MRK', 'SLDB', 'GILD', 'DD', 'AON', 'QIWI', 'AVGO', 'TEAM', 'MBT', 'GD', 'MVIS', 'NVS', 'AWH', 'WFC', 'JD', 'ORLY', 'ITW', 'TEL', 'HMC', 'EMR', 'PYPL', 'ADBE', 'CPNG', 'DASH', 'DG', 'APPH', 'NIO', 'MMM', 'CI', 'YNDX', 'MS', 'SNOW', 'MSCI', 'AMGN', 'FB', 'CNI', 'STLA', 'EXC', 'DISCA', 'TFC', 'CTSH', 'ATVI', 'VRTX', 'GOLD', 'NVDA', 'SNY', 'SCCO', 'CCL', 'ICE', 'WBK', 'GOOG', 'FTNT', 'DELL', 'BHP', 'PAAS', 'MET', 'TCS', 'CMI', 'CCI', 'WMT', 'XLNX', 'DDOG', 'LCID', 'CMG', 'BX', 'APA', 'VALE', 'AEP', 'BMO', 'ZS', 'BP', 'PSA', 'EL', 'ABBV', 'SAVA', 'TMO', 'HDB', 'ACH', 'WDAY', 'LYG', 'COTY', 'UPS', 'BCE', 'MO', 'GM', 'CVS', 'VLO', 'NTES', 'CSX', 'C', 'PCAR', 'VRSN', 'CRWD', 'PFE', 'TTE', 'XOM', 'ROP', 'INTU', 'XRX', 'COIN', 'LRCX', 'OIS', 'SNPS', 'RIDE', 'FSLR'}
+if id_step == 1:
+    listok = open('spis.txt', 'r').readlines()
+elif id_step == 2:
+    listok = open('case.txt', 'r').readlines()
+for i in listok:
+    i = i[:len(i) - 1]
 answer = []
 def my_sort(sort_list):
     def compare(elem1, elem2):
@@ -47,6 +54,7 @@ def my_sort(sort_list):
     return sort_list
 
 async def inf(msg_id):
+    global answer
     #text - сообщение от того бота
     text = str(await client.get_messages(OUTPUT_CHANNEL1, ids = msg_id))
     ind = text.find('%')
@@ -105,12 +113,7 @@ async def spis(num):
                     await client.send_message(OUTPUT_CHANNEL1, i)
                 await asyncio.sleep(0.25)
             flag_ans = False
-        s = ''
-        for i in my_sort(answer):
-            s += str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
-        out = open('answer.txt', 'w')
-        out.writelines(s)
-        out.close()
+        await write()
         print('I`m finished!')
                 
     
@@ -130,6 +133,26 @@ async def normal_handler(event):
     #вызывается спам компаниями
     await spis(i)
     await inf(event.id)
+
+async def write():
+    global id_step
+    global answer
+    if id_step == 1:
+        s = ''
+        for i in my_sort(answer):
+            s += str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
+        out = open('answer.txt', 'w')
+        out.writelines(s)
+        out.close()
+    elif id_step == 2:
+        s = ''
+        for i in my_sort(answer):
+            if (i[0] < 80):
+                s += str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
+        out = open('sell.txt', 'w')
+        out.writelines(s)
+        out.close()
+        
 
 client.start()
 client.run_until_disconnected()
