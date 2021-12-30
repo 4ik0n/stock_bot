@@ -117,7 +117,7 @@ async def spis(num):
             flag_ans = False
         await write()
         print('I`m finished!')
-                
+        exit(0)                
     
 @client.on(events.NewMessage(chats=(OUTPUT_CHANNEL1)))
 async def normal_handler(event):
@@ -135,7 +135,6 @@ async def normal_handler(event):
     #вызывается спам компаниями
     await spis(i)
     await inf(event.id)
-    exit(0)
 
 async def write():
     global id_step
