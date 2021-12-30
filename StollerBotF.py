@@ -135,6 +135,7 @@ async def normal_handler(event):
     #вызывается спам компаниями
     await spis(i)
     await inf(event.id)
+    exit(0)
 
 async def write():
     global id_step
